@@ -2,9 +2,16 @@ import React from 'react';
 import './main-app.css';
 
 class WikiSearch extends React.Component{
-    state = {
+        
+        state = {
         searchTerm : ''
-    };
+        }
+    
+    searchRandomInfo = (e) => {
+        window.open("https://en.wikipedia.org/wiki/Special:Random","_blank");
+        this.setState({searchTerm : ''});
+    }
+    
 
     onFormSubmit = (e) => {
         console.log('submitted '+this.state.searchTerm);
@@ -20,7 +27,7 @@ class WikiSearch extends React.Component{
                 onChange={(event) => this.setState({searchTerm:event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1).toLowerCase()})}
             />
             <input id="go-btn" className="wiki-btn" type="submit" value="Go" onClick={this.onFormSubmit}/>
-        {/* <input id="random-search" className="wiki-btn" type="submit" value="Random Search" onClick={window.open("https://en.wikipedia.org/wiki/Special:Random","_blank")}/>*/}
+        { <input id="random-search" className="wiki-btn" type="button" value="Random Search" onClick={this.searchRandomInfo}/>}
             </form>
         );
     }
